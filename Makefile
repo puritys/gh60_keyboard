@@ -17,3 +17,9 @@ mac:
 debug:
 	./tools/hid_listen.mac
 	# Enable debug: left shift + right shift + d
+
+
+# git clone puritys/qmk_firmware
+compileQmk:
+	docker run -v `pwd`/qmk_firmware:/qmk_firmware -ti docker.io/puritys/tmk_keyboard bash -c "cd /qmk_firmware && make dz60:default"
+	echo -e "\n\nresult : qmk_firmware/.build/dz60_default.hex"
