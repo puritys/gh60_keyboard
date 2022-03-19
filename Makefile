@@ -10,7 +10,7 @@ tkg_revabc:
 
 mac:
 	dfu-programmer atmega32u4 erase --force
-	dfu-programmer atmega32u4 flash firmware/qmk/dz60_legacy.hex
+	dfu-programmer atmega32u4 flash firmware/qmk/dz60_current.hex
 	dfu-programmer atmega32u4 reset
 
 
@@ -22,10 +22,11 @@ debug:
 # git clone puritys/qmk_firmware
 compileQmk:
 	# clean all compiled files if have any error.
-	# docker run -v `pwd`/qmk_firmware:/qmk_firmware -ti docker.io/puritys/tmk_keyboard bash -c "cd /qmk_firmware && qmk clean -a"
+	#docker run -v `pwd`/qmk_firmware:/qmk_firmware -ti docker.io/puritys/tmk_keyboard bash -c "cd /qmk_firmware && qmk clean -a"
 	docker run -v `pwd`/qmk_firmware:/qmk_firmware -ti docker.io/puritys/tmk_keyboard bash -c "cd /qmk_firmware && qmk compile -kb dz60 -km default"
 	echo -e "\n\nresult : qmk_firmware/.build/dz60_default.hex"
 
 legacyCompileQmk:
+	#docker run -v `pwd`/qmk_firmware:/qmk_firmware -ti docker.io/puritys/tmk_keyboard bash -c "cd /qmk_firmware && make clean"
 	docker run -v `pwd`/qmk_firmware:/qmk_firmware -ti docker.io/puritys/tmk_keyboard bash -c "cd /qmk_firmware && make dz60:default"
 	echo -e "\n\nresult : qmk_firmware/.build/dz60_default.hex"
